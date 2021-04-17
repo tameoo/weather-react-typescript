@@ -1,0 +1,28 @@
+
+.weather-toogle{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 66px;
+}
+
+.celcius, .fahrenheit{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: #585676;
+    color: #E7E7EB;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.active{
+    color: #110E3C;
+    background-color: #E7E7EB;
+}
+
+.celcius{
+    margin-right: 12px;
+}
