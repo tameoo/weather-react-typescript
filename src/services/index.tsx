@@ -3,7 +3,7 @@ const apiKey = 'd701466e6f81830ea1596b7e2038a077';
 
 const fetchCurrentWeatherCoords = async ({lat, lon}: {lat: number | null,lon: number | null}) => {
     if(lat && lon){
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+        const response = await fetch(`http://pro.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`)
         
         if(!response.ok){
             throw new Error('Response is not correct to openweather API');
@@ -15,7 +15,7 @@ const fetchCurrentWeatherCoords = async ({lat, lon}: {lat: number | null,lon: nu
 
 const fetchForecastWeatherCoords = async ({lat, lon}: {lat: number | null,lon: number | null}) => {
     if(lat && lon){
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${apiKey}`)
+        const response = await fetch(`http://pro.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${apiKey}`)
 
         if(!response.ok){
             throw new Error('Response is not correct to openweather API');

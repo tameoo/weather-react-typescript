@@ -13,7 +13,6 @@ const Weather: React.FC = () => {
 
     useEffect(() => {
         OnHandleCoords()
-        console.log('render')
     },[]);
 
     const OnHandleCoords = () => {
