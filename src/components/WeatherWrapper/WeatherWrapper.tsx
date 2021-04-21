@@ -15,9 +15,10 @@ interface WeatherWrapperProps{
 const WeatherWrapper:React.FC<WeatherWrapperProps> = ({coords, toggleTemp}) => {
     const [highlight, seHighlight] = useState<number>(0);
     const [forecastWeather, setForecastWeather] = useState<any>(null);
-    const [isLoading, setLoading] = useState<boolean>(true);
+    const [isLoading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setLoading(true);
         const fetchData = async () => {
             setForecastWeather(await fetchForecastWeatherCoords(coords));
             setLoading(false);

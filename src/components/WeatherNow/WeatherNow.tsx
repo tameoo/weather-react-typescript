@@ -16,9 +16,10 @@ interface WeatherNowProps{
 
 const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,OnHandleCoords}) => {
     const [currentWeather, setCurrentWeather] = useState<any>(null);
-    const [isLoading, setLoading] = useState<boolean>(true);
+    const [isLoading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+        setLoading(true);
         const fetchData = async () => {
             setCurrentWeather(await fetchCurrentWeatherCoords(coords));
             setLoading(false);
@@ -35,7 +36,7 @@ const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,O
     return (
         isLoading ?
             <Spinner /> 
-        :  currentWeather ? (
+        : currentWeather ? (
             <>
                 <div className="navigation">
                     <button className="navigation-search" onClick={() => OnHandleForm()}>Search for places</button>
