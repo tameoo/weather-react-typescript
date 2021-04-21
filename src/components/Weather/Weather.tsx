@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import ToogleBtn from './ToogleBtn';
-import WeatherNow from './WeatherNow';
-import SearchForm from './SearchForm';
-import WeatherDescr from './WeatherDescr';
+import {ToogleBtn} from '../ToogleBtn';
+import {WeatherNow} from '../WeatherNow';
+import {SearchForm} from '../SearchForm';
+import {WeatherDescr} from '../WeatherDescr';
+import { getCoordsByName } from '../../services';
 import './Weather.css';
-import { getCoordsByName } from '../services';
 
 const Weather: React.FC = () => {
     const [coords, setCoords] = useState<{lat: number | null, lon:number | null}>({lat: null, lon: null});
@@ -40,8 +40,13 @@ const Weather: React.FC = () => {
     return (
         <div className="weather">
             <div className="weather-main">
-                {form ? <WeatherNow coords={coords} toggleTemp={toggleTemp} OnHandleForm={OnHandleForm} OnHandleCoords={OnHandleCoords} /> 
-                      : <SearchForm OnHandleForm={OnHandleForm} OnClickForm={OnClickForm}/>}
+                {form ? <WeatherNow 
+                            coords={coords} 
+                            toggleTemp={toggleTemp}
+                            OnHandleForm={OnHandleForm} 
+                            OnHandleCoords={OnHandleCoords} /> 
+                      : <SearchForm OnHandleForm={OnHandleForm}
+                                    OnClickForm={OnClickForm}/>}
             </div>
             <div className="weather-description">
                 <ToogleBtn OnToggleTemp={OnToggleTemp} />
@@ -51,4 +56,4 @@ const Weather: React.FC = () => {
     );
 }
 
-export default Weather;
+export { Weather };

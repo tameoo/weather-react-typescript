@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getCoordsByName } from '../services';
+import { getCoordsByName } from '../../services';
 import './SearchForm.css';
 
 interface SearchProps{
@@ -58,4 +58,4 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
     );
 }
 
-export default SearchForm;
+export {SearchForm};

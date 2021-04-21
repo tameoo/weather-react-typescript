@@ -1,5 +1,5 @@
 import React from 'react';
-import { convertMilliseconds } from '../services';
+import { convertMilliseconds } from '../../helper';
 import './Highlight.css';
 
 interface HighlightProps{
@@ -7,7 +7,6 @@ interface HighlightProps{
 }
 
 const Highlight: React.FC<HighlightProps> = ({forecastWeather}) => {
-    console.log(forecastWeather);
     return (
         <>
             <h2 className="description-header">{convertMilliseconds(forecastWeather[0]?.dt, 'long')}</h2>
@@ -16,9 +15,7 @@ const Highlight: React.FC<HighlightProps> = ({forecastWeather}) => {
                     <p className="weather-grid-subtitle">Wind status</p>
                     <p className="weather-grid-title">{Math.round(forecastWeather[0]?.speed)}<span>mph</span></p>
                     <div className="weather-wind">
-                        <div>
-                            <img className="weather-wind-arrow" src="images/compass.png" alt="compass" style={{transform: `rotate(calc(${forecastWeather[0]?.deg}deg - 45deg))`}}/> 
-                        </div>
+                            <img className="weather-wind-arrow" src="images/compass.svg" alt="compass" style={{transform: `rotate(${forecastWeather[0]?.deg}deg)`}}/> 
                     </div>
                 </li>
                 <li className="weather-grid-item">
@@ -46,4 +43,4 @@ const Highlight: React.FC<HighlightProps> = ({forecastWeather}) => {
     );
 }
 
-export default Highlight;
+export {Highlight};

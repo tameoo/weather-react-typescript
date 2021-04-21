@@ -29,4 +29,4 @@ const ToogleBtn: React.FC<ToogleBtnProps> = ({OnToggleTemp}) => {
     );
 }
 
-export default ToogleBtn;
+export {ToogleBtn};

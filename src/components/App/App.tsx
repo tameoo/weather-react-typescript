@@ -1,5 +1,5 @@
 import React from 'react';
-import Weather from './Weather';
+import {Weather} from '../Weather';
 import './App.css';
 
 const App: React.FC = () => {
@@ -12,4 +12,4 @@ const App: React.FC = () => {
     );
 }
 
-export default App;
+export {App};

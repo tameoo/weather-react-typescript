@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { fetchCurrentWeatherCoords, toogleTemp, convertMilliseconds } from '../services';
-import Spinner from './Spinner';
+import { fetchCurrentWeatherCoords } from '../../services';
+import { toogleTemp, convertMilliseconds } from '../../helper';
+import {Spinner} from '../Spinner';
 import './WeatherNow.css';
 
 interface WeatherNowProps{
@@ -55,4 +56,4 @@ const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,O
     }
 }
 
-export default WeatherNow;
+export {WeatherNow};

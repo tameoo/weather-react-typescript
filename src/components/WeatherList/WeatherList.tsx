@@ -1,5 +1,5 @@
 import React from 'react';
-import { convertMilliseconds, toogleTemp } from '../services';
+import { toogleTemp, convertMilliseconds } from '../../helper';
 import './WeatherList.css';
 
 interface WeatherListProps{
@@ -33,4 +33,4 @@ const WeatherList: React.FC<WeatherListProps> = ({toggleTemp, forecastWeather, O
 }
 
 
-export default WeatherList;
+export {WeatherList};

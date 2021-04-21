@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { fetchForecastWeatherCoords } from '../services';
-import Highlight from './Highlight';
-import WeatherList from './WeatherList';
-import Spinner from './Spinner';
+import { fetchForecastWeatherCoords } from '../../services';
+import {Highlight} from '../Highlight';
+import {WeatherList} from '../WeatherList';
+import {Spinner} from '../Spinner';
 
 interface WeatherDescrProps{
     coords: {
@@ -43,7 +43,7 @@ const WeatherDescr:React.FC<WeatherDescrProps> = ({coords, toggleTemp}) => {
     }
 }
 
-export default WeatherDescr;
+export {WeatherDescr};
 
 
     
