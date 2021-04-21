@@ -42,7 +42,7 @@ const WeatherWrapper:React.FC<WeatherWrapperProps> = ({coords, toggleTemp}) => {
                 <WeatherList toggleTemp={toggleTemp} forecastWeather={forecastWeather} OnSetHighlight={OnSetHighlight}/>
                 <Highlight forecastWeather={filterHighlight(forecastWeather,highlight)}/>
             </>
-        ) : null
+        ) : <Spinner /> 
     );
 }
 

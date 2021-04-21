@@ -59,7 +59,7 @@ const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,O
                     {currentWeather?.name}
                 </div>
             </>
-        ) : null
+        ) : <Spinner /> 
     );
 }
 
