@@ -4,7 +4,7 @@ import {Highlight} from '../Highlight';
 import {WeatherList} from '../WeatherList';
 import {Spinner} from '../Spinner';
 
-interface WeatherDescrProps{
+interface WeatherWrapperProps{
     coords: {
         lat: number | null,
         lon : number | null
@@ -12,13 +12,15 @@ interface WeatherDescrProps{
     toggleTemp: string
 }
 
-const WeatherDescr:React.FC<WeatherDescrProps> = ({coords, toggleTemp}) => {
+const WeatherWrapper:React.FC<WeatherWrapperProps> = ({coords, toggleTemp}) => {
     const [highlight, seHighlight] = useState<number>(0);
     const [forecastWeather, setForecastWeather] = useState<any>(null);
+    const [isLoading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchData = async () => {
             setForecastWeather(await fetchForecastWeatherCoords(coords));
+            setLoading(false);
         }
         fetchData();
     },[coords]);
@@ -31,19 +33,19 @@ const WeatherDescr:React.FC<WeatherDescrProps> = ({coords, toggleTemp}) => {
         return forecastWeather?.list.filter((el: any, index: number ) => index === highlight);
     }
 
-    if(forecastWeather){
-        return (
+    return (
+        isLoading ? (
+            <Spinner /> 
+        ) : forecastWeather ? (
             <>
                 <WeatherList toggleTemp={toggleTemp} forecastWeather={forecastWeather} OnSetHighlight={OnSetHighlight}/>
                 <Highlight forecastWeather={filterHighlight(forecastWeather,highlight)}/>
             </>
-        );
-    } else {
-        return <Spinner />
-    }
+        ) : null
+    );
 }
 
-export {WeatherDescr};
+export {WeatherWrapper};
 
 
     

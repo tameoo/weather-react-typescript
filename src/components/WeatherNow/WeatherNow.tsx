@@ -16,18 +16,26 @@ interface WeatherNowProps{
 
 const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,OnHandleCoords}) => {
     const [currentWeather, setCurrentWeather] = useState<any>(null);
+    const [isLoading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchData = async () => {
             setCurrentWeather(await fetchCurrentWeatherCoords(coords));
+            setLoading(false);
         }
         fetchData();
     },[coords]);
 
-    if(currentWeather) {
-        const value = toogleTemp(currentWeather?.main?.temp, toggleTemp);
+    let value: string = '';
+
+    if(currentWeather){
+        value = toogleTemp(currentWeather?.main?.temp, toggleTemp);
+    }
     
-        return (
+    return (
+        isLoading ?
+            <Spinner /> 
+        :  currentWeather ? (
             <>
                 <div className="navigation">
                     <button className="navigation-search" onClick={() => OnHandleForm()}>Search for places</button>
@@ -50,10 +58,8 @@ const WeatherNow: React.FC<WeatherNowProps> = ({coords,toggleTemp,OnHandleForm,O
                     {currentWeather?.name}
                 </div>
             </>
-        );
-    } else {
-        return <Spinner />
-    }
+        ) : null
+    );
 }
 
 export {WeatherNow};

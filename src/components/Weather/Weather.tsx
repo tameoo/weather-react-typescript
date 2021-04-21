@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {ToogleBtn} from '../ToogleBtn';
 import {WeatherNow} from '../WeatherNow';
 import {SearchForm} from '../SearchForm';
-import {WeatherDescr} from '../WeatherDescr';
+import {WeatherWrapper} from '../WeatherWrapper';
 import { getCoordsByName } from '../../services';
 import './Weather.css';
 
@@ -40,17 +40,20 @@ const Weather: React.FC = () => {
     return (
         <div className="weather">
             <div className="weather-main">
-                {form ? <WeatherNow 
-                            coords={coords} 
+                { 
+                    form ? (
+                        <WeatherNow coords={coords} 
                             toggleTemp={toggleTemp}
                             OnHandleForm={OnHandleForm} 
                             OnHandleCoords={OnHandleCoords} /> 
-                      : <SearchForm OnHandleForm={OnHandleForm}
-                                    OnClickForm={OnClickForm}/>}
+                    )
+                    : <SearchForm OnHandleForm={OnHandleForm}
+                                  OnClickForm={OnClickForm} />
+                }
             </div>
             <div className="weather-description">
                 <ToogleBtn OnToggleTemp={OnToggleTemp} />
-                <WeatherDescr coords={coords} toggleTemp={toggleTemp} />
+                <WeatherWrapper coords={coords} toggleTemp={toggleTemp} />
             </div>
         </div>
     );
