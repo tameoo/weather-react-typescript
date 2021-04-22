@@ -25,7 +25,12 @@ const convertMilliseconds = (milles: number, option: string = 'short') => {
     }).format(date);
 }
 
+const filterHighlight = (forecastWeather: any,highlight: number): any => {
+    return forecastWeather?.list.filter((el: any, index: number ) => index === highlight);
+}
+
 export{
+    filterHighlight,
     toogleTemp,
     convertMilliseconds
 }
