@@ -1,6 +1,7 @@
 .app{
     position: relative;
     background-color: #333333;
+    max-height: 100vh;
 }
 
 .app-container{
