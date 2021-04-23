@@ -3,7 +3,6 @@ import {ToogleBtn} from '../ToogleBtn';
 import {WeatherNow} from '../WeatherNow';
 import {SearchForm} from '../SearchForm';
 import {WeatherWrapper} from '../WeatherWrapper';
-import { getCoordsByName } from '../../services';
 import './Weather.css';
 
 const Weather: React.FC = () => {
