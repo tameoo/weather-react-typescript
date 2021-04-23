@@ -10,8 +10,8 @@ interface SearchProps{
 const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
     const [cities, setCities] = useState<any[]>([]);
 
-    const handleSubmit = (label: string) => {
-        OnClickForm(label)
+    const handleSubmit = (coords: any) => {
+        OnClickForm(coords);
         OnHandleForm();
     }
 
@@ -19,7 +19,8 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
         e.preventDefault();
 
         const fetchData = async () => {
-            setCities(getCities((await getCoordsByName(e.currentTarget.value)).data));
+          const {features} = await getCoordsByName(e.currentTarget.value);
+          setCities(features);
         }
 
         if(e.currentTarget.value.length > 2){
@@ -32,10 +33,10 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
     }
 
     const getCities = (cities: any[]): JSX.Element[] => {
-        return cities.map(({label}, index)=> {
+        return cities.map(({properties: {city, lat, lon}}, index)=> {
             return  (
-                <li className="search-item" key={index} onClick={() => handleSubmit(label)}>
-                    <span>{label}</span>
+                <li className="search-item" key={index} onClick={() => handleSubmit({lat, lon})}>
+                    <span>{city}</span>
                     <i className="far fa-chevron-right"></i>
                 </li>
             )
@@ -51,7 +52,7 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
                     autoComplete="off"
                     onChange={(e) => OnChangeValue(e)} />
             <ul className="search-list">
-                {cities}
+                {getCities(cities)}
             </ul>
             <i className="far fa-times close"  onClick={() => OnHandleForm()}></i>
         </>

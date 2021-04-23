@@ -29,12 +29,8 @@ const Weather: React.FC = () => {
         setToggleTemp(toggleValue);
     }
 
-    const OnClickForm = (name: string) => {
-        const fetchData = async () => {
-            const {latitude, longitude} = (await getCoordsByName(name)).data[0];
-            setCoords( {lat: latitude, lon: longitude});
-        }
-        fetchData();
+    const OnClickForm = (coords: any) => {
+        setCoords(coords);
     }
 
     return (

@@ -1,6 +1,6 @@
 
 const apiKeyWeather = 'd701466e6f81830ea1596b7e2038a077';
-const apiKeyPosition = '3ae7c7b2dd1f58c6402da03860317237';
+const apiKeyPosition = 'fbc13c10bd85447d8b05a6fd4f167c9a';
 
 const fetchCurrentWeatherCoords = async ({lat, lon}: {lat: number | null,lon: number | null}) => {
     if(lat && lon){
@@ -28,7 +28,7 @@ const fetchForecastWeatherCoords = async ({lat, lon}: {lat: number | null,lon: n
 
 const getCoordsByName = async (name: string) => {
     if(name){
-        const response = await fetch(`https://api.positionstack.com/v1/forward?access_key=${apiKeyPosition}&query=${name}`)
+        const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${name}&apiKey=${apiKeyPosition}`)
 
         if(!response.ok){
             throw new Error('Response is not correct to openweather API');
