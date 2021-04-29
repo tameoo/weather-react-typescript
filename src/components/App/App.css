@@ -1,11 +1,9 @@
-.app{
-    position: relative;
-    background-color: #333333;
+.app {
     min-height: 100vh;
+    background-color: #fff;
 }
 
-.app-container{
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 30px 0;
+.app.night {
+    background-color: #333;
 }
+

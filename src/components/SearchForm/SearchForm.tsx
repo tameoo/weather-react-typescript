@@ -2,25 +2,26 @@ import React, { useState } from 'react';
 import { getCoordsByName } from '../../services';
 import './SearchForm.css';
 
-interface SearchProps{
-    OnHandleForm: () => void,
-    OnClickForm: (name: string) => void
+interface ISearchForm{
+    color: string
+    onHandleForm: () => void,
+    onClickItem: (name: string) => void,
 }
 
-const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
+const SearchForm: React.FC<ISearchForm> = ({color, onHandleForm, onClickItem}) =>{
     const [cities, setCities] = useState<any[]>([]);
 
     const handleSubmit = (coords: any) => {
-        OnClickForm(coords);
-        OnHandleForm();
+        onClickItem(coords);
+        onHandleForm();
     }
 
     const OnChangeValue = (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         const fetchData = async () => {
-          const {features} = await getCoordsByName(e.currentTarget.value);
-          setCities(features);
+            const { features } = await getCoordsByName(e.currentTarget.value);
+            setCities(features);
         }
 
         if(e.currentTarget.value.length > 2){
@@ -35,8 +36,10 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
     const getCities = (cities: any[]): JSX.Element[] => {
         return cities.map(({properties: {city, lat, lon}}, index)=> {
             return  (
-                <li className="search-item" key={index} onClick={() => handleSubmit({lat, lon})}>
-                    <span>{city}</span>
+                <li className={`search-item ${color}`} 
+                    key={index} 
+                    onClick={() => handleSubmit({lat, lon})}>
+                        <span>{city}</span>
                     <i className="far fa-chevron-right"></i>
                 </li>
             )
@@ -52,11 +55,12 @@ const SearchForm: React.FC<SearchProps> = ({OnHandleForm, OnClickForm}) =>{
                     autoComplete="off"
                     onChange={(e) => OnChangeValue(e)} />
             <ul className="search-list">
-                {getCities(cities)}
+                { getCities(cities) }
             </ul>
-            <i className="far fa-times close"  onClick={() => OnHandleForm()}></i>
+            <i className={`far fa-times close ${color}`}  
+                onClick={() => onHandleForm()}></i>
         </>
     );
 }
 
-export {SearchForm};
+export { SearchForm };

@@ -1,1 +1,1 @@
-export {ToogleBtn} from './ToogleBtn';
+export { ToogleBtn } from './ToogleBtn';

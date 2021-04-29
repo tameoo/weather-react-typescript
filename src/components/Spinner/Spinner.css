@@ -4,7 +4,7 @@
     100% { transform: translate(-50%,-50%) rotate(360deg); }
   }
 
-  .spinner{
+  .spinner {
     display: flex;
     justify-content: center;
     align-items: center;

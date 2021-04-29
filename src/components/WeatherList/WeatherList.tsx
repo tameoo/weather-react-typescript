@@ -3,22 +3,26 @@ import { toogleTemp, convertMilliseconds } from '../../helper';
 import './WeatherList.css';
 
 interface WeatherListProps{
-    toggleTemp: string,
+    temperature: string,
+    color: string,
     forecastWeather: any,
-    OnSetHighlight: (index: number) => void
+    onSetHighlight: (index: number) => void
 }
 
-const WeatherList: React.FC<WeatherListProps> = ({toggleTemp, forecastWeather, OnSetHighlight}) => {
+const WeatherList: React.FC<WeatherListProps> = ({temperature, color, forecastWeather, onSetHighlight}) => {
     
     const getForecastItems= (forecasts: any[]):JSX.Element[] => {
-        return forecasts?.map((forecast, index) => {
+        return forecasts.map((forecast, index) => {
+            const dayTemp = toogleTemp(forecast.temp?.day,temperature);
+            const nightTemp = toogleTemp(forecast.temp?.night,temperature);
+            
             return (
-                <li key={index} className="weather-item" onClick={() => OnSetHighlight(index)}>
-                    <p className="weather-title">{convertMilliseconds(forecast?.dt)}</p>
-                    <img className="weather-img" src={`images/${forecast?.weather[0].icon}.svg`} alt="weather-forecast"/>
+                <li key={index} className={`weather-item ${color}`} onClick={() => onSetHighlight(index)}>
+                    <p className="weather-title">{convertMilliseconds(forecast.dt)}</p>
+                    <img className="weather-img" src={`images/${forecast.weather[0].icon}.svg`} alt="weather-forecast"/>
                     <div className="weather-tempature">
-                        <span className="day">{toogleTemp(forecast?.temp?.day,toggleTemp)}</span>
-                        <span className="night">{toogleTemp(forecast?.temp?.night,toggleTemp)}</span>
+                        <span className="day">{dayTemp}</span>
+                        <span className="night-opacity">{nightTemp}</span>
                     </div>
                 </li>
             );
@@ -27,10 +31,10 @@ const WeatherList: React.FC<WeatherListProps> = ({toggleTemp, forecastWeather, O
     
     return (
         <ul className="weather-list">
-            {getForecastItems(forecastWeather?.list?.slice(0,5))}
+            { getForecastItems(forecastWeather.list.slice(0,5)) }
         </ul>
     );
 }
 
 
-export {WeatherList};
+export { WeatherList };

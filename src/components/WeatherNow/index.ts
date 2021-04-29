@@ -1,1 +1,1 @@
-export { WeatherNow } from './WeatherNow';
+import { WeatherNow } from './WeatherNow'; 

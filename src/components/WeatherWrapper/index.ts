@@ -1,1 +1,0 @@
-export { WeatherWrapper } from './WeatherWrapper';

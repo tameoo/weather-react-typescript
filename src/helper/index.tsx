@@ -1,5 +1,5 @@
 const toogleTemp = (value: number, prop: string): string => {
-    switch(prop){
+    switch(prop) {
         case 'celcius':
             value = value - 273.15;
             return `${Math.round(value)}℃`;
@@ -14,7 +14,7 @@ const toogleTemp = (value: number, prop: string): string => {
 const convertMilliseconds = (milles: number, option: string = 'short') => {
     const date = new Date(+`${milles}000`);
 
-    if(option === 'long'){
+    if(option === 'long') {
         return new Intl.DateTimeFormat('en-US', {
             weekday: 'long'
         }).format(date);  
@@ -29,7 +29,7 @@ const filterHighlight = (forecastWeather: any,highlight: number): any => {
     return forecastWeather?.list.filter((el: any, index: number ) => index === highlight);
 }
 
-export{
+export {
     filterHighlight,
     toogleTemp,
     convertMilliseconds

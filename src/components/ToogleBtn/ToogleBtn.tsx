@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './ToogleBtn.css';
 
 interface ToogleBtnProps{
-    OnToggleTemp: (toggleValue: string) => void
+    color: string
+    onToggleTemp: (toggleValue: string) => void,
 }
 
-const ToogleBtn: React.FC<ToogleBtnProps> = ({OnToggleTemp}) => {
+const ToogleBtn: React.FC<ToogleBtnProps> = ({color, onToggleTemp}) => {
     const [{celcius, fahrenheit}, setActive] = useState<{celcius: boolean;fahrenheit: boolean;}>({celcius: true, fahrenheit: false});
     
     const activeC = {celcius: true, fahrenheit: false};
@@ -13,18 +14,18 @@ const ToogleBtn: React.FC<ToogleBtnProps> = ({OnToggleTemp}) => {
 
     const setCelcius = () => {
         setActive(activeC)
-        OnToggleTemp('celcius')
+        onToggleTemp('celcius')
     }
     
     const setFahrenheit = () => {
         setActive(activeF)
-        OnToggleTemp('fahrenheit')
+        onToggleTemp('fahrenheit')
     }
     
     return (
         <div className="weather-toogle">
-            <button className={`celcius ${celcius && 'active'}`} onClick={() => setCelcius()}>℃</button>
-            <button className={`fahrenheit ${fahrenheit && 'active'}`} onClick={() => setFahrenheit()}>℉</button>
+            <button className={`celcius ${celcius && 'active'} ${color}`} onClick={() => setCelcius()}>℃</button>
+            <button className={`fahrenheit ${fahrenheit && 'active'} ${color}`} onClick={() => setFahrenheit()}>℉</button>
         </div>
     );
 }

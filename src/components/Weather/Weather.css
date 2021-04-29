@@ -1,20 +1,28 @@
 
-.weather{
-    width: 100%;
+.weather {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 30px 0;
     display: flex;
 }
 
-.weather-main{
+.weather-main {
     position: relative;
     width: 32%;
     padding: 30px;
-    background-color: #1E213A;
-    overflow: hidden;
+    background-color: #e3f4fe;
 }
 
-.weather-description{
+.weather-main.night {
+    background-color: #1E213A;
+}
+
+.weather-description {
     width: 68%;
     padding: 30px 90px 155px;
-    background-color: #100E1D;
+    background-color: #fffae0;
 }
 
+.weather-description.night {
+    background-color: #100E1D;
+}
