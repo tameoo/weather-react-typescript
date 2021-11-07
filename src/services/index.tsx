@@ -1,6 +1,6 @@
 
-const apiKeyWeather = 'd701466e6f81830ea1596b7e2038a077';
-const apiKeyPosition = 'fbc13c10bd85447d8b05a6fd4f167c9a';
+const apiKeyWeather = '8cfcb5c748e9642898e43288cc10f915';
+const apiKeyPosition = '49868d4ba8e64bc0833086e66f72dfc5';
 
 const fetchCurrentWeatherCoords = async ({lat, lon}: {lat: number | null,lon: number | null}) => {
     const response = await fetch(`http://pro.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKeyWeather}`)
